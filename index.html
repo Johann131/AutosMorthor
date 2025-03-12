@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página con LocalStorage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bienvenido</h1>
+    <p>Ingresa tu nombre y se guardará incluso después de refrescar la página.</p>
+    
+    <input type="text" id="nombre" placeholder="Escribe tu nombre">
+    <button onclick="guardarNombre()">Guardar</button>
+    
+    <h2 id="mensaje"></h2>
+
+    <script>
+        // Función para guardar el nombre en LocalStorage
+        function guardarNombre() {
+            let nombre = document.getElementById("nombre").value;
+            if (nombre.trim() !== "") {
+                localStorage.setItem("nombreUsuario", nombre);
+                mostrarNombre();
+            }
+        }
+
+        // Función para mostrar el nombre guardado
+        function mostrarNombre() {
+            let nombreGuardado = localStorage.getItem("nombreUsuario");
+            if (nombreGuardado) {
+                document.getElementById("mensaje").textContent = "¡Hola, " + nombreGuardado + "!";
+            }
+        }
+
+        // Llamar a la función al cargar la página
+        mostrarNombre();
+    </script>
+
+</body>
+</html>
